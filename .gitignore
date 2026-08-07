@@ -1,0 +1,41 @@
+# .NET
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+.vs/
+*.DotSettings.user
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+docker/.env
+**/appsettings.*.local.json
+**/secrets.json
+**/secrets.h
+**/google-services.json
+**/GoogleService-Info.plist
+**/*-firebase-adminsdk-*.json
+**/fcm-service-account.json
+
+# IDE / OS / agent local
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.cursor/
+**/.claude/
+Thumbs.db
+Desktop.ini
+
+# Node / RN (FASE 3)
+**/node_modules/
+**/dist/
+
+# Firmware build (FASE 4)
+**/.pio/
+**/cmake-build-*/
+
+# Test / coverage
+**/TestResults/
+**/coverage/

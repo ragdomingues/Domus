@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Domus",
+    "slug": "domus",
+    "version": "0.3.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.domus.mobile"
+    },
+    "android": {
+      "package": "app.domus.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F2A24",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "appEnv": "dev",
+      "apiBaseUrl": "http://auto:8080",
+      "signalRHubUrl": "http://auto:8080/hubs/devices",
+      "eas": {
+        "projectId": "177626f0-2648-4d80-8b5e-c9c3118bc7ac"
+      }
+    },
+    "owner": "ragdomingues-team"
+  }
+}

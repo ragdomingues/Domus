@@ -1,0 +1,5 @@
+# Overrides locais opcionais (não versionar segredos).
+services:
+  api:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development

@@ -1,0 +1,68 @@
+node {
+  name = "domus@127.0.0.1"
+  cookie = "domus_emqx_cookie"
+  data_dir = "data"
+}
+
+listeners.tcp.default {
+  bind = "0.0.0.0:1883"
+}
+
+dashboard {
+  listeners.http {
+    bind = "0.0.0.0:18083"
+  }
+}
+
+# Device + API service authentication via Domus HTTP hooks.
+# __DOMUS_MQTT_HOOK_SECRET__ is substituted at container start.
+authentication = [
+  {
+    mechanism = password_based
+    backend = http
+    enable = true
+    method = post
+    url = "http://api:8080/internal/mqtt/auth"
+    headers {
+      "content-type" = "application/json"
+      "x-domus-mqtt-hook" = "__DOMUS_MQTT_HOOK_SECRET__"
+    }
+    body {
+      username = "${username}"
+      password = "${password}"
+    }
+    connect_timeout = "5s"
+    request_timeout = "5s"
+    enable_pipelining = 100
+  }
+]
+
+authorization {
+  deny_action = ignore
+  no_match = deny
+  sources = [
+    {
+      type = http
+      enable = true
+      method = post
+      url = "http://api:8080/internal/mqtt/acl"
+      headers {
+        "content-type" = "application/json"
+        "x-domus-mqtt-hook" = "__DOMUS_MQTT_HOOK_SECRET__"
+      }
+      body {
+        username = "${username}"
+        topic = "${topic}"
+        action = "${action}"
+      }
+      connect_timeout = "5s"
+      request_timeout = "5s"
+    }
+  ]
+}
+
+log {
+  console {
+    level = warning
+  }
+}

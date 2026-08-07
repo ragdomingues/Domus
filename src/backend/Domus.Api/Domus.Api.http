@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:8080
+
+### Health
+GET {{baseUrl}}/health
+
+### Register
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "rafael@domus.test",
+  "password": "SenhaForte1!",
+  "name": "Rafael",
+  "tenantName": "Rafael",
+  "residenceName": "Casa Principal",
+  "timezone": "America/Sao_Paulo"
+}
+
+### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "rafael@domus.test",
+  "password": "SenhaForte1!",
+  "deviceInfo": "http-file"
+}
+
+### Refresh
+POST {{baseUrl}}/api/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### Logout
+POST {{baseUrl}}/api/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
