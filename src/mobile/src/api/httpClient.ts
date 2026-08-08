@@ -135,10 +135,13 @@ export function normalizeApiError(error: unknown): AppApiError {
   if (axios.isAxiosError(error)) {
     const ax = error as AxiosError<ApiErrorBody>;
     const apiMessage = ax.response?.data?.error;
+    const isNetwork = ax.code === 'ERR_NETWORK' || ax.message === 'Network Error';
     const message =
       apiMessage ||
-      (ax.code === 'ERR_NETWORK' || ax.message === 'Network Error'
-        ? 'Sem conexão com o servidor. Confira a rede e se a API está ligada.'
+      (isNetwork
+        ? env.appEnv === 'production'
+          ? 'Servidor Domus indisponível no momento. Se o problema continuar, a API de produção ainda não está no ar.'
+          : 'Sem conexão com o servidor. Confira a rede e se a API está ligada.'
         : ax.message?.length && ax.message.length < 120
           ? ax.message
           : 'Erro de rede');

@@ -30,7 +30,10 @@ export function Screen({
 
   return (
     <AppBackground variant={variant}>
-      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+      <SafeAreaView
+        style={styles.safe}
+        edges={variant === 'auth' ? ['top', 'left', 'right'] : ['top', 'left', 'right', 'bottom']}
+      >
         {scroll ? (
           <ScrollView
             contentContainerStyle={contentStyle}

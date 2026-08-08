@@ -1,6 +1,7 @@
 import { type ReactNode, useEffect, useRef } from 'react';
 import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
 import { radii } from '../theme/spacing';
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export function AuthSheet({ children, delay = 160 }: Props) {
+  const insets = useSafeAreaInsets();
   const translateY = useRef(new Animated.Value(56)).current;
   const opacity = useRef(new Animated.Value(0)).current;
 
@@ -32,7 +34,17 @@ export function AuthSheet({ children, delay = 160 }: Props) {
   }, [delay, opacity, translateY]);
 
   return (
-    <Animated.View style={[styles.sheet, { opacity, transform: [{ translateY }] }]}>
+    <Animated.View
+      style={[
+        styles.sheet,
+        {
+          opacity,
+          transform: [{ translateY }],
+          // Espaço extra acima da barra de navegação (gestos / 3 botões)
+          paddingBottom: Math.max(36, insets.bottom + 28),
+        },
+      ]}
+    >
       <View style={styles.accentRow}>
         <LinearGradient
           colors={[colors.accent, colors.brandSoft]}
@@ -53,8 +65,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 28,
     paddingHorizontal: 24,
     paddingTop: 22,
-    paddingBottom: 32,
-    minHeight: '54%',
     shadowColor: colors.shadow,
     shadowOpacity: 1,
     shadowRadius: 32,

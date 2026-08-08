@@ -18,6 +18,7 @@ docker/.env
 **/GoogleService-Info.plist
 **/*-firebase-adminsdk-*.json
 **/fcm-service-account.json
+**/store-listing/credenciais-play-review.txt
 
 # IDE / OS / agent local
 .idea/

@@ -140,9 +140,12 @@ const styles = StyleSheet.create({
   error: { color: colors.danger, marginTop: 12, fontFamily: fonts.sansSemi },
   linkWrap: {
     marginTop: 20,
+    minHeight: 44,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  linkMuted: { ...typography.caption, color: colors.inkMuted },
-  link: { ...typography.caption, color: colors.brand, fontFamily: fonts.sansBold },
+  linkMuted: { ...typography.body, color: colors.inkMuted },
+  link: { ...typography.body, color: colors.brand, fontFamily: fonts.sansBold },
 });
+

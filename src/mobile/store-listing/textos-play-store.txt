@@ -1,0 +1,35 @@
+=== NOME DO APP ===
+Domus
+
+=== DESCRIÇÃO BREVE (máx. 80 caracteres) ===
+Controle o portão da sua casa com segurança, pelo celular.
+
+=== DESCRIÇÃO COMPLETA ===
+Domus é o app para controlar o portão da sua residência com praticidade e segurança.
+
+Abra e feche o portão pelo celular, acompanhe o status em tempo real e receba alertas quando algo importante acontecer — tudo pensado para o dia a dia da sua casa.
+
+PRINCIPAIS RECURSOS
+• Abrir e fechar o portão pelo app
+• Status em tempo real (aberto, fechado, online/offline)
+• Histórico recente de comandos e eventos
+• Alertas e notificações do portão
+• Várias residências e dispositivos na mesma conta
+• Convite de moradores e permissões por papel
+• Modo seguro de ativação do aparelho com código
+
+PARA QUEM É
+Famílias e condomínios que querem controlar o acesso da casa sem depender só do controle remoto físico.
+
+SEGURANÇA
+O Domus usa autenticação de conta, comunicação segura com a nuvem e ativação controlada dos dispositivos. Você decide quem pode operar cada portão.
+
+COMO COMEÇAR
+1. Crie sua conta
+2. Cadastre a residência
+3. Adicione o dispositivo e ative com o código
+4. Controle o portão pelo app
+
+Suporte: use o e-mail de contato informado na ficha do app.
+
+Domus — sua casa, sob controle.

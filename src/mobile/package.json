@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/react": "~19.2.2",
     "cross-env": "^10.1.0",
+    "eas-cli": "^21.7.0",
     "typescript": "~5.9.2"
   },
   "scripts": {

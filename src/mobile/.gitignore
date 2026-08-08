@@ -44,6 +44,9 @@ GoogleService-Info.plist
 *-firebase-adminsdk-*.json
 fcm-service-account.json
 
+# Credenciais de review da Play (local)
+store-listing/credenciais-play-review.txt
+
 # typescript
 *.tsbuildinfo
 

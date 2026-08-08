@@ -3,6 +3,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -31,7 +32,6 @@ export function ForgotPasswordScreen() {
     mutationFn: () => authApi.forgotPassword(email),
     onSuccess: (data) => {
       setError(null);
-      // Em Dev (ExposeResetToken), a API pode devolver o token para QA sem e-mail.
       navigation.navigate('ResetPassword', {
         email: email.trim(),
         resetToken: data.resetToken ?? undefined,
@@ -48,63 +48,80 @@ export function ForgotPasswordScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.root}
       >
-        <View style={styles.hero}>
-          <View style={styles.back}>
-            <IconButton
-              name="chevron-back"
+        <ScrollView
+          contentContainerStyle={styles.scroll}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
+          <View style={styles.hero}>
+            <View style={styles.back}>
+              <IconButton
+                name="chevron-back"
+                tone="onDark"
+                accessibilityLabel="Voltar"
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+            <BrandMark
+              compact
               tone="onDark"
-              accessibilityLabel="Voltar"
-              onPress={() => navigation.goBack()}
+              subtitle="Informe o e-mail da conta para redefinir a senha"
             />
           </View>
-          <BrandMark
-            compact
-            tone="onDark"
-            subtitle="Informe o e-mail da conta para redefinir a senha"
-          />
-        </View>
 
-        <AuthSheet>
-          <Text style={styles.formTitle}>Esqueci a senha</Text>
-          <Text style={styles.formHint}>
-            Enviaremos um código por e-mail. Depois você cola o código e define a nova senha.
-          </Text>
-          <TextField
-            label="E-mail"
-            autoCapitalize="none"
-            autoCorrect={false}
-            keyboardType="email-address"
-            placeholder="voce@email.com"
-            value={email}
-            onChangeText={setEmail}
-          />
+          <AuthSheet>
+            <Text style={styles.formTitle}>Esqueci a senha</Text>
+            <Text style={styles.formHint}>
+              Enviaremos um código por e-mail. Depois você cola o código e define a nova senha.
+            </Text>
+            <TextField
+              label="E-mail"
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="email-address"
+              placeholder="voce@email.com"
+              value={email}
+              onChangeText={setEmail}
+            />
 
-          {error ? <Text style={styles.error}>{error}</Text> : null}
+            {error ? <Text style={styles.error}>{error}</Text> : null}
 
-          <PrimaryButton
-            label="Enviar código por e-mail"
-            variant="brand"
-            loading={mutation.isPending}
-            disabled={!email.trim()}
-            onPress={() => mutation.mutate()}
-            style={{ marginTop: 18 }}
-          />
+            <PrimaryButton
+              label="Enviar código por e-mail"
+              variant="brand"
+              loading={mutation.isPending}
+              disabled={!email.trim()}
+              onPress={() => mutation.mutate()}
+              style={{ marginTop: 18 }}
+            />
 
-          <Pressable onPress={() => navigation.navigate('Login')} style={styles.linkWrap}>
-            <Text style={styles.link}>Voltar ao login</Text>
-          </Pressable>
-        </AuthSheet>
+            <Pressable
+              onPress={() => navigation.navigate('Login')}
+              style={styles.linkWrap}
+              hitSlop={16}
+            >
+              <Text style={styles.link}>Voltar ao login</Text>
+            </Pressable>
+          </AuthSheet>
+        </ScrollView>
       </KeyboardAvoidingView>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, justifyContent: 'flex-end' },
+  root: { flex: 1 },
+  scroll: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+  },
   hero: {
-    flex: 1,
+    minHeight: 160,
     justifyContent: 'center',
     paddingHorizontal: 24,
+    paddingTop: 48,
+    paddingBottom: 12,
   },
   back: { position: 'absolute', top: 8, left: 16, zIndex: 2 },
   formTitle: {
@@ -116,6 +133,6 @@ const styles = StyleSheet.create({
   },
   formHint: { ...typography.caption, color: colors.inkMuted, marginBottom: 6, lineHeight: 18 },
   error: { color: colors.danger, marginTop: 12, fontFamily: fonts.sansSemi },
-  linkWrap: { marginTop: 20, alignItems: 'center' },
-  link: { ...typography.caption, color: colors.brand, fontFamily: fonts.sansBold },
+  linkWrap: { marginTop: 20, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+  link: { ...typography.body, color: colors.brand, fontFamily: fonts.sansBold },
 });
