@@ -19,8 +19,12 @@ const ENV_CONFIG = {
       process.env.EXPO_PUBLIC_SIGNALR_HUB_URL ?? 'https://homolog-api.domus.local/hubs/devices',
   },
   production: {
-    apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://api.domus.app',
-    signalRHubUrl: process.env.EXPO_PUBLIC_SIGNALR_HUB_URL ?? 'https://api.domus.app/hubs/devices',
+    // Hostname gratuito via sslip.io → IP Hetzner (troque quando tiver domínio próprio)
+    apiBaseUrl:
+      process.env.EXPO_PUBLIC_API_BASE_URL ?? 'https://167.233.98.48.sslip.io',
+    signalRHubUrl:
+      process.env.EXPO_PUBLIC_SIGNALR_HUB_URL ??
+      'https://167.233.98.48.sslip.io/hubs/devices',
   },
 };
 
